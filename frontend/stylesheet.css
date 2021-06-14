@@ -1,0 +1,224 @@
+html{
+    font-size:3vh;
+    display:flex;
+    justify-content:center;
+    text-align: center;
+    background: url('background.jpg');
+}
+
+body {
+    padding:0vh;
+    margin:0vh;
+    /*background-color:rgb(236, 229, 217);*/
+    max-width: 90vw;
+    justify-content:center;
+    text-align: center;
+}
+
+h1 {
+    font-size:200%;
+    margin:0.2vh;
+    padding:0.2vh;;
+}
+
+p {
+    font-size:100%;
+    margin:0vh;
+    padding:0vh;
+}
+
+ul {
+    margin:0vh 0vh 0vh 0vh;
+    padding:0vh 0vh 0vh 0vh;
+}
+
+ul li {
+    margin:0.5vh 0.5vh 0vh 2.5vh;
+    padding:0vh 0vh 0vh 0vh;
+    border:0.2vh solid black;
+    border-radius: 0.5vh;
+}
+
+ul li:before {
+    margin-left: -0.5vh;
+}
+
+li::marker{
+    margin:0vh;
+    padding:0vh;
+}
+
+a {
+    margin:0vh;
+    padding:0vh;  
+}
+
+.threeColumnTable tr > td:nth-child(1) > select {
+    width: 36.5vh;
+}
+
+select {
+    background-color: inherit;
+    border:0px;
+    border:0px;
+    font-size:100%;
+    margin:0vh;
+    width: 85vh;
+}
+
+input {
+    background-color: inherit;
+    border:0px;
+    font-size:100%;
+    margin:0.3vh;
+    width: 84vh;
+}
+
+textarea {
+    background-color: inherit;
+    border:0px;
+    font-size:80%;
+    margin:0vh;
+    padding:0vh;
+    width: 84vh;
+    height:7vh;
+}
+
+button {
+   font-size:100%; 
+   margin:0.1vh;
+}
+
+#searchEmployeeDiv2 > div > div > button {
+    margin:0.5vh 0vh 0.5vh;
+}
+
+.bottomButton{
+    margin-top: 0.8vh;
+}
+
+table {
+    margin: 0 auto;
+    width: 130vh;
+    /* or margin: 0 auto 0 auto */
+}
+
+table tr > td {
+    margin:0vh;
+    text-align: left;
+}
+
+table tr > td:nth-child(1) {
+    padding:0vh 0.5vh 0vh;
+    width: 50vh;
+    text-align: left;
+}
+
+table tr > td:nth-child(2) {
+    padding:0vh 0vh 0vh;
+    width: 80vh;
+    text-align: left;
+}
+
+.threeColumnTable th:nth-child(1), td:nth-child(1) {
+  width:100vh;
+}
+
+.threeColumnTable th:nth-child(2), td:nth-child(2) {
+    width:5vh;
+}
+
+.threeColumnTable th:nth-child(3), td:nth-child(3) {
+    min-width:80vh;
+}
+
+.threeColumnTable th:nth-child(3), td:nth-child(3) {
+    width:80vh;
+}
+
+.threeColumnTable td:nth-child(3) select, input{
+    max-width:79.5vh;
+}
+
+#bottomDiv {
+    margin-top:1vh;
+}
+
+/*#addEmployeeDiv > label {
+    color: black;
+    font-size:60%;
+    padding:0vh;
+    margin:0vh;
+}*/
+
+.centeredContentContainer{
+  overflow:auto;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position:relative;
+}
+
+.notCenteredText {
+    text-align: justify;
+}
+
+.borderedDiv {
+    pointer-events:all;
+    background-color:#f1ede5;
+    width:130.1vh;
+    overflow: auto;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
+    padding:0vh 0vh 0.1vh;
+    margin: 0vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.unclickable{
+	pointer-events:none;
+	opacity:0.2;
+}
+
+.inactiveTR, select:disabled, input:disabled {
+    opacity:1;
+    color:darkgrey;
+}
+
+.closeIconButton{
+    pointer-events:all;
+    margin: 0.2% 0% 0%;
+    width:3%;
+    position:absolute;
+    background-color: transparent;
+    top:3px;
+    right:1px;
+    right:5px;
+    display: block;
+}
+
+#searchEmployeeDiv2 > div > div > button {
+    width:100vh;
+}
+
+a {
+    font-size: 135%;
+}
+
+.radioContainer {
+    display: flex;
+    justify-content:space-around
+}
+
+input[type="radio"] {
+    width: 2vh;
+}
+
+#bottomDiv button {
+   margin-bottom:0.5vh;
+   width:60vh;
+}

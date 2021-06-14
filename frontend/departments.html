@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Факультети й кафедри</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="lib.js"></script>
+    <script src="departmentsFE.js"></script>
+</head>
+<body onload="onload()">
+    <h1>Факультети й кафедри</h1>
+    <div class="centeredContentContainer hidden" id="addFacultyDiv">
+        <img src="close.png" class="closeIconButton" onclick="clickCloseaddFacultyDiv()"><img>
+        <div class="borderedDiv">
+            <p><strong style="font-size: 150%;">Створити факультет</strong></p>
+            <table border="1">
+                <tr>
+                    <td>Назва факультету</td>
+                    <td><input></td>
+                </tr>
+                <tr>
+                    <td>Додаткова інформація</td>
+                    <td><textarea></textarea></td>
+                </tr>
+            </table>
+            <button type="button" id="addFacultyButton" onclick="clickConfirmAddOrEditFaculty()" class="bottomButton">Підтвердити</button>
+            <div id="addFacultyResults"></div>
+        </div>
+    </div>
+    <div class="centeredContentContainer hidden" id="addDepartmentDiv">
+        <img src="close.png" class="closeIconButton" onclick="clickCloseaddDepartmentDiv()"><img>
+        <div class="borderedDiv">
+            <p><strong style="font-size: 150%;">Створити нову кафедру</strong></p>
+            <table border="1">
+                <tr>
+                    <td>Назва кафедри</td>
+                    <td><input></td>
+                </tr>
+                <tr>
+                    <td>Факультет</td>
+                    <td id="tdFaculties"></td>
+                </tr>
+                <tr>
+                    <td>Додаткова інформація</td>
+                    <td><textarea></textarea></td>
+                </tr>
+            </table>
+            <button type="button" id="addDepartmentButton" onclick="clickConfirmAddOrEditDepartment()" class="bottomButton">Підтвердити</button>
+            <div id="addDepartmentResults"></div>
+        </div>
+    </div>
+    <div id="searchDepartmentDiv" class="centeredContentContainer hidden">
+        <img id="close1" src="close.png" class="closeIconButton" onclick="clickCloseSearchDepartmentDiv()"><img>
+        <div class="borderedDiv">
+            <p style="font-weight:bold; font-size:130%">Шукати кафедри та факультети</p>
+            <div class="radioContainer">
+                <div><input type="radio" checked="true" name="facultyOrDepartment" onclick="clickChooseSearchFacultyOrDepartment()">
+                <label>Шукати кафедри</label></div>
+                <div><input type="radio" name="facultyOrDepartment" onclick="clickChooseSearchFacultyOrDepartment()">
+                <label>Шукати факультети</label></div>
+            </div>
+            <table border="1" class="threeColumnTable">
+                <tr>
+                    <th>Критерії пошуку</th>
+                    <th style="font-size:50%">Точний збіг</th>
+                    <th>Значення</th>
+                </tr>
+                <tr>
+                    <td style="min-width:36.5vh;">Назва кафедри</td>
+                    <td>
+                        <div class="centeredContentContainer"><input type="checkbox" style="width:2vh;"></div>
+                    </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="min-width:36.5vh;">Факультет, до якого належить кафедра</td>
+                    <td><div class="centeredContentContainer"><input type="checkbox" style="width:2vh;" checked disabled></div></td>
+                    <td id="tdFacultiesInSearch"></td>
+                </tr>
+                <tr>
+                    <td style="min-width:36.5vh;">Додаткова інформація</td>
+                    <td><div class="centeredContentContainer"><input type="checkbox" style="width:2vh;"></div></td>
+                    <td><textarea></textarea></td>
+                </tr>
+                <tr>
+                    <td style="min-width:36.5vh;">ID кафедри</td>
+                    <td><div class="centeredContentContainer"><input type="checkbox" style="width:2vh;" disabled checked></div></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr class="hidden">
+                    <td style="min-width:36.5vh;">Назва факультету</td>
+                    <td>
+                        <div class="centeredContentContainer"><input type="checkbox" style="width:2vh;"></div>
+                    </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr class="hidden">
+                    <td style="min-width:36.5vh;">Додаткова інформація</td>
+                    <td><div class="centeredContentContainer"><input type="checkbox" style="width:2vh;"></div></td>
+                    <td><textarea></textarea></td>
+                </tr>
+                <tr class="hidden">
+                    <td style="min-width:36.5vh;">ID факультету</td>
+                    <td><div class="centeredContentContainer"><input type="checkbox" style="width:2vh;" disabled checked></div></td>
+                    <td><input type="text"></td>
+                </tr>
+            </table>
+            <button type="button" id="searchDepartmentButton" onclick="confirmSearchFacultyOrDepartment()" class="bottomButton">Підтвердити</button>
+            <div id="searchDepartmentResults" class="notCenteredText"><ul></ul></div>
+            <div id="searchDepartmentErrorResults" class="centeredContentContainer"><ul></ul></div>
+        </div>
+    </div>
+    <div id="bottomDiv">
+        <div class="centeredContentContainer">
+            <button type="button" onclick="clickSearchFacultyOrDepartment()">Шукати факультети й кафедри</button> 
+        </div>
+        <div class="centeredContentContainer">
+            <button type="button" onclick="clickCreateNewFaculty()">Створити новий факультет</button> 
+        </div>
+        <div class="centeredContentContainer">
+            <button type="button" onclick="clickCreateNewDepartment()">Створити нову кафедру</button> 
+        </div>
+    </div>
+    <div id="aDiv">
+        <a href="vacancies.html">Вакансії</a><br>
+        <a href="employees.html">Працівники університету</a><br>
+        <a href="/">На головну сторінку</a>
+    </div>
+</body>
+</html>

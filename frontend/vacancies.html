@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вакансії</title>
+    <script src="lib.js"></script>
+    <script src="vacanciesFE.js"></script>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body onload="onload()">
+    <h1>Вакансії</h1>
+    <div id="addVacancyDiv" class="centeredContentContainer hidden">
+        <img id="close0" src="close.png" class="closeIconButton" onclick="clickCloseAddVacancyDiv()"><img>
+        <div class="borderedDiv">
+            <p style="font-weight:bold; font-size:130%">Додати вакансію</p>
+            <table border="1">
+                <tr>
+                    <td>Тип роботи</td>
+                    <td><select id="workType" onchange="stateOfAddEditDepartmentTr()">
+                        <option value="0">Працівник адміністрації</option>
+                        <option value="1">Працівник технічого персоналу</option>
+                        <option value="2">Працівник кафедри (інженерно-технічний склад)</option>
+                        <option value="3">Працівник кафедри (викладацький склад)</option>
+                    </select></td>
+                </tr>
+                <tr id="addEditDepartmentTr">
+                    <td>Кафедра</td>
+                    <td id="department"></td>
+                </tr>
+                <tr>
+                    <td>Розмір ставки</td>
+                    <td><input id="workLoad" type="number" min="0" max="2" step="0.25" value="1.0"></td>
+                </tr>
+                <tr>
+                    <td>Дата початку роботи за вакансією</td>
+                    <td><input type="date" min="1950-01-01" id="startDate"></td>
+                </tr>
+                <tr id = "workEndDateTr">
+                    <td>Дата завершення роботи <br>(для тимчасових вакансій на місця працівників у декреті)</td>
+                    <td><input type="date" id="endDate" min="1950-01-01" id="workStartDate"></td>
+                </tr>
+                <tr id = "substEmplTr">
+                    <td>Працівник, на заміну якому створено вакансію<br>(для тимчасових вакансій на місця працівників у декреті)</td>
+                    <td><input id="substEmpl" disabled></td>
+                </tr>
+                <tr>
+                    <td>Додаткова інформація</td>
+                    <td><textarea id="extraInfo"></textarea></td>
+                </tr>
+            </table>
+            <button type="button" id="addDepartmentButton" class="bottomButton">Підтвердити</button>
+            <div id="addDivResults"></div>
+        </div>
+    </div>
+    <div id="searchVacancyDiv" class="centeredContentContainer hidden">
+        <img id="close1" src="close.png" class="closeIconButton" onclick="clickCloseSearchVacancyDiv()"><img>
+        <div class="borderedDiv">
+            <p style="font-weight:bold; font-size:130%">Шукати вакансії</p>
+            <table border="1" class="threeColumnTable"><tbody>
+                <tr>
+                    <th>Критерії пошуку</th>
+                    <th>Значення</th>
+                </tr>
+                <tr>
+                    <td>Тип роботи</td>
+                    <td><select id="workTypeInSearch" onchange="stateOfAddEditDepartmentTrInSearch()">
+                        <option value="">Всі</option>
+                        <option value="0">Працівник адміністрації</option>
+                        <option value="1">Працівник технічого персоналу</option>
+                        <option value="2">Працівник кафедри (інженерно-технічний склад)</option>
+                        <option value="3">Працівник кафедри (викладацький склад)</option>
+                    </select></td>
+                </tr>
+                <tr id="addEditDepartmentTrInSearch">
+                    <td>Кафедра</td>
+                    <td id="departmentInSearch"></td>
+                </tr>
+                <tr>
+                    <td>Статус вакансії</td>
+                    <td><select id="vacancyStatus">
+                        <option value="">Всі</option>
+                        <option value="1">Нове робоче місце</option>
+                        <option value="0">Тимчасове (на місце працівника в декретній відпустці)</option>
+                    </select></td>
+                </tr>
+            </tbody></table>
+            <div id="searchResultDiv" class="notCenteredText"><ul></ul></div>
+            <button type="button" id="searchVacancyButton" class="bottomButton">Шукати</button>
+        </div>
+    </div>
+    <div id="addEmplByVacancyDiv" class="centeredContentContainer hidden">
+        <img id="close3" src="close.png" class="closeIconButton" onclick="clickCloseAddEmplByVacancyDiv()"><img>
+        <div class="borderedDiv">
+            <p style="font-weight:bold; font-size:130%">Додати працівника за вакансією id<span id="vacancyIdSpanForAddEmpl"></span></p>
+            <table border="1" class="threeColumnTable"><tbody>
+                <tr>
+                    <td>Прізвище, ім'я, по-батькові</td>
+                    <td><input id="name3"></td>
+                </tr>
+                <tr>
+                    <td>Телефон (у форматі з 0)</td>
+                    <td><input type="number" id="phone3"></td>
+                </tr>
+                <tr>
+                    <td>Стать</td>
+                    <td><select id="gender3">
+                            <option value="m">Чоловіча</option>
+                            <option value="f">Жіноча</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Дата народження</td>
+                    <td><input type="date" min="1920-01-01" id="birthDate3"></td>
+                </tr>
+                <tr>
+                    <td>Кількість дітей</td>
+                    <td><select id="numOfChildren3">
+                            <option value="0">Бездітний(-а)</option>
+                            <option value="1">1 дитина</option>
+                            <option value="2">2 дитини</option>
+                            <option value="3">Багатодітний(-а), більше 3 дітей</option>
+                        </select></td>
+                </tr>
+                <tr class="inactiveTR">
+                    <td>Тип роботи</td>
+                    <td><select id="workType3" disabled>
+                        <option value="0">Працівник адміністрації</option>
+                        <option value="1">Працівник технічого персоналу</option>
+                        <option value="2">Працівник кафедри (інженерно-технічний склад)</option>
+                        <option value="3">Працівник кафедри (викладацький склад)</option>
+                    </select></td>
+                </tr>
+                <tr id="addEditDepartmentTr3" class="inactiveTR">
+                    <td>Кафедра</td>
+                    <td id="department3"></td>
+                </tr>
+                <tr class="inactiveTR">
+                    <td>Розмір ставки</td>
+                    <td><input disabled id="workLoad3" type="number" min="0" max="2" step="0.25" value="1.0"></td>
+                </tr>
+                <tr class="inactiveTR">
+                    <td>Дата початку роботи</td>
+                    <td><input disabled type="date" min="1950-01-01" id="workStartDate3"></td>
+                </tr>
+                <tr class="inactiveTR" id = "maternityLeaveEndDateTr3" class="hidden">
+                    <td>Планована дата завершення декретної відпустки працівника, на заміну якому створено тимчасову вакансію</td>
+                    <td><input disabled type="date" id="maternityLeaveEndDate3"></td>
+                </tr>
+                <tr class="inactiveTR" id = "substEmployeeTr3" class="hidden">
+                    <td>Працівник, на заміну якому створено тимчасову вакансію</td>
+                    <td><input disabled id="substEmployee3"></td>
+                </tr>
+                <tr>
+                    <td>Додаткова інформація</td>
+                    <td><textarea id="extraInfo3"></textarea></td>
+                </tr>
+            </tbody></table>
+            <button type="button" id="addEmplByVacancyButton3" class="bottomButton">Підтвердити</button>
+            <div id="addEmplByVacancyDivResults3"></div>
+        </div>
+    </div>
+    <div id="bottomDiv">
+        <div class="centeredContentContainer">
+            <button type="button">
+                Шукати / редагувати / видалити вакансію<br> 
+                або додати працівника за вакансією
+            </button> 
+        </div>
+        <div class="centeredContentContainer">
+            <button type="button">Створити нову вакансію</button> 
+        </div>
+        <a href="employees.html">Працівники університету</a><br>
+        <a href="departments.html">Факультети й кафедри</a><br>
+        <a href="/">На головну сторінку</a><br>
+    </div>
+</body>
+</html>

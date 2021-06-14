@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="uk">
+
+<head>
+    <title>Працівники університету</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body onload="onload()">
+    <script src="lib.js"></script>
+    <script src="employeesFE.js"></script>
+    <h1>Працівники університету</h1>
+    <div id="addEmployeeDiv" class="centeredContentContainer hidden">
+        <img id="close0" src="close.png" class="closeIconButton" onclick="clickCloseAddEmployeeDiv()"><img>
+        <div class="borderedDiv">
+            <p style="font-weight:bold; font-size:130%">Додати працівника</p>
+            <table border="1">
+                <tr>
+                    <td>Прізвище, ім'я, по-батькові</td>
+                    <td><input id="name"></td>
+                </tr>
+                <tr>
+                    <td>Телефон (у форматі з 0)</td>
+                    <td><input type="number" id="phone"></td>
+                </tr>
+                <tr>
+                    <td>Стать</td>
+                    <td><select id="gender">
+                            <option value="m">Чоловіча</option>
+                            <option value="f">Жіноча</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Дата народження</td>
+                    <td><input type="date" min="1920-01-01" id="birthDate"></td>
+                </tr>
+                <tr>
+                    <td>Кількість дітей</td>
+                    <td><select id="numOfChildren">
+                            <option value="0">Бездітний(-а)</option>
+                            <option value="1">1 дитина</option>
+                            <option value="2">2 дитини</option>
+                            <option value="3">Багатодітний(-а), більше 3 дітей</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Тип роботи</td>
+                    <td><select id="workType" onchange="stateOfAddEditDepartmentTr()">
+                        <option value="0">Працівник адміністрації</option>
+                        <option value="1">Працівник технічого персоналу</option>
+                        <option value="2">Працівник кафедри (інженерно-технічний склад)</option>
+                        <option value="3">Працівник кафедри (викладацький склад)</option>
+                    </select></td>
+                </tr>
+                <tr id="addEditDepartmentTr">
+                    <td>Кафедра</td>
+                    <td id="department"></td>
+                </tr>
+                <tr>
+                    <td>Розмір ставки</td>
+                    <td><input id="workLoad" type="number" min="0" max="2" step="0.25" value="1.0"></td>
+                </tr>
+                <tr>
+                    <td>Дата початку роботи</td>
+                    <td><input type="date" min="1950-01-01" id="workStartDate"></td>
+                </tr>
+                <tr>
+                    <td>Поточний статус</td>
+                    <td><select id="currentStatus" onchange="selectCurrentStatus(value)">
+                        <option value="3">Чинний працівник</option>
+                        <option value="2">У декретній відпустці</option>
+                        <option value="1">Колишній працівник</option>
+                        <option value="0">Колишній працівник (пенсіонер)</option>
+                    </select></td>
+                </tr>
+                <tr id = "maternityLeaveEndDateTr" class="hidden">
+                    <td>Планована дата завершення декретної відпустки</td>
+                    <td><input type="date" id="maternityLeaveEndDate"></td>
+                </tr>
+                <tr id = "workEndDateTr" class="hidden">
+                    <td>Дата припинення роботи</td>
+                    <td><input type="date" id="workEndDate"></td>
+                </tr>
+                <tr id = "tempEndDateTr" class="hidden">
+                    <td>Дата завершення роботи за тимчасовою вакансією</td>
+                    <td><input type="date" id="tempEndDate"></td>
+                </tr>
+                <tr>
+                    <td>Додаткова інформація</td>
+                    <td><textarea id="extraInfo"></textarea></td>
+                </tr>
+            </table>
+            <button type="button" id="addEmployeeButton" class="bottomButton">Підтвердити</button>
+            <div id="addDivResults"></div>
+        </div>
+    </div>
+    <div id="searchEmployeeDiv" class="centeredContentContainer hidden">
+        <img id="close1" src="close.png" class="closeIconButton" onclick="clickCloseSearchEmployeeDiv('searchEmployeeDiv')"><img>
+        <div class="borderedDiv">
+            <p style="font-weight:bold; font-size:130%">Шукати працівника(-ів)</p>
+            <table border="1" class="threeColumnTable"><tbody>
+                <tr>
+                    <th>Критерії пошуку</th>
+                    <th style="font-size:50%">Точний збіг</th>
+                    <th>Значення</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select onchange="selectSearchParam(this)">
+                            <option value="currentStatus">Поточний статус</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="centeredContentContainer"><input type="checkbox" style="width:2vh;" checked="" disabled="true">
+                        </div>
+                    </td>
+                    <td><select>
+                        <option value="3">Чинний працівник</option>
+                        <option value="2">У декретній відпустці</option>
+                        <option value="1">Колишній працівник</option>
+                        <option value="0">Колишній працівник (пенсіонер)</option>
+                        </select></td>
+                </tr>
+            </tbody></table>
+            <div id="searchResultDiv" class="notCenteredText"> <ul> </ul> </div>
+            <button type="button" id="addSearchFieldButton" class="bottomButton">Додати критерій пошуку</button><br>
+            <button type="button" id="searchEmployeeButton" class="bottomButton">Шукати</button>
+        </div>
+    </div>
+    <div id="searchEmployeeDiv2" class="centeredContentContainer hidden">
+        <img id="close1" src="close.png" class="closeIconButton" onclick="clickCloseSearchEmployeeDiv('searchEmployeeDiv2')"><img>
+        <div class="borderedDiv">
+            <p><strong style="font-size: 150%;">Пошук працівників за категоріями</strong></p>
+            <button class='hidden' id="updateSearch2Button"></button>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="searchNoChildren(this)">Бездітні працівники</button> 
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="searchManyChildren(this)">Багатодітні працівники</button> 
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="searchAlmostRetired(this)">Працівники передпенсійного віку (віком від 58 повних років)</button> 
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="searchVeterans(this)">Ветерани (працівники, прийняті на роботу 30+ років тому)</button> 
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="searchJubilees(this)">Ювіляри поточного року</button> 
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="searchMaternityLeave(this)">Працівники в декретній відпустці</button> 
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="seachArchive(this)">Архів працівників</button> 
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="seachArchiveDismissed(this)">Архів працівників (крім пенсіонерів)</button>
+            </div>
+            <div class="centeredContentContainer">
+                <button type="button" onclick="seachArchiveRetired(this)">Архів працівників (пенсіонери)</button> 
+            </div>
+            <div id="searchResultDiv2" class="notCenteredText"><ul></ul></div>
+        </div>
+    </div>
+    <div id="bottomDiv">
+        <div class="centeredContentContainer">
+            <button type="button">Додати нового працівника (без урахування вакансій)</button> 
+        </div>
+        <div class="centeredContentContainer">
+            <button type="button">
+                Додати нового працівника за вакансією
+                <br>(перейти у розділ вакансій)
+            </button> 
+        </div>
+        <div class="centeredContentContainer" >
+            <button type="button">Шукати працівників за обраними критеріями</button> 
+        </div>
+        <div class="centeredContentContainer">
+            <button type="button">Шукати працівників за категоріями</button> 
+        </div>
+    </div>
+    <a href="vacancies.html">Вакансії</a><br>
+    <a href="departments.html">Факультети й кафедри</a><br>
+    <a href="/">На головну сторінку</a>
+</body>
+</html>
